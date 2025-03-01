@@ -26,6 +26,60 @@ They store elements in **contiguous memory locations**, resulting in easily calc
 - **Memory Usage:** Efficient but requires contiguous memory allocation, which can make resizing costly.
 - **Traversal Ease:** Easy with indexing. You can iterate through an entire array in `O(n)` time.
 
+```js
+// Using an array to store games
+let playStation = ["COD", "Fortnite"];
+console.log(playStation[1]); // Fast access by index
+
+playStation.push("Marvel Rivals"); // Adding a new game at the end
+console.log(playStation); // Output: ['COD', 'Fortnite', 'Marvel Rivals']
+
+playStation.pop(); // Removing the last game
+console.log(playStation); // Output: ['COD', 'Fortnite']
+```
+
+### Singly Linked List
+
+A linear data structure where each node contains a piece of _data_ and a **pointer** to the _next node_ in the sequence. The next of the last node is `null`, indicating the end of the list.
+
+- **Insertion:**
+  - `O(1)` if you're inserting at the head.
+  - `O(n)` if you're inserting at a specific index (traversal required).
+- **Removal:**
+  - `O(1)` if removing from the head.
+  - `O(n)` if removing from a specific index (traversal required).
+- **Random Access:** You must traverse from the head.
+- **Memory Usage:** Higher than arrays due to an extra pointer per node and requires one reference per node.
+- **Traversal Ease:** Only forward traversal.
+
+### Doubly Linked List
+
+In a doubly linked list, the `head node` has a next reference pointing to the `next node` in the list. Usually, it doesn't have a previous reference because it is the first node. Each node after has data and references to the previous and next nodes.
+
+- **Insertion:**
+  - `O(1)` if you're inserting at the head or tail.
+  - `O(n)` if you're inserting at a specific index (traversal required).
+- **Removal:**
+  - `O(1)` if removing from the head or tail.
+  - `O(n)` if removing from a specific index.
+- **Random Access:** You must traverse in both directions.
+- **Memory Usage:** Higher than singly linked lists because it stores two pointers per node. Using more memory like this can impact the overall memory efficiency, especially for large lists.
+- **Traversal Ease:** Allows for traversal in both directions.
+
+### When to Use Each?
+
+Use **arrays** when you need fast random access to elements, the number of elements is known in advance or doesn't change often, or if insertions or removals happen mostly at the end. For example:
+
+- Game Leaderboards: Store top scores in an array since accessing the `n-th` highest score is quick.
+
+Choose a **singly linked list** if you need to frequently insert or remove elements, especially at the head, without the need for fast random access. It’s ideal when you don’t know the exact number of elements in advance or don’t require contiguous memory. For example:
+
+- Undo/Redo Functionality: In text editors (e.g., Microsoft Word, VS Code), each action is stored as a node in a singly linked list.
+
+Use **doubly linked list** for fast insertions and deletions at both ends, when traversal in both directions is required, and memory overhead. For example:
+
+- Browser Back/Forward Navigation: The history of visited pages is stored in a doubly linked list, allowing users to go back and forward easily.
+
 ## Prompt 2
 
 Imagine you are developing a web browser's "back" button functionality. When a user clicks "back," the browser should navigate to the previously visited webpage.
@@ -35,6 +89,19 @@ Would you use a stack or a queue to implement this functionality?
 In your response, explain what a Stack/Queue is and why it would be best for this use case. Make sure that your response includes the terms LIFO or FIFO.
 
 ### Response 2
+
+To implement the "back" button in a web browser, you would use a stack.
+
+### What is a Stack?
+
+A `stack` is a **abstract data type** that uses the **LIFO** principle **(Last In, First Out)**. This means that the last item added is the first one to be removed. This has a collection of values with two operations:
+
+- `push` = Inserts a new element to the "top" of the stack.
+- `pop` = Removes the most recent element added to the stack.
+
+### Why Use a Stack for the "Back" Button?
+
+When you click the "back" button, the browser should go to the **most recent page** you visited. A stack works here because each time you visit a new page, you _push_ it into the stack. When you press "back," the browser _pops_ the most recent page off the stack, taking you back to the previous page. However, a **queue** follows the **FIFO** principle **(First In, First Out)**, meaning the first item added is the first one removed. This wouldn't be ideal for the "back" button since you'd be going back to the oldest page first, not the most recent one.
 
 ## Prompt 3
 
