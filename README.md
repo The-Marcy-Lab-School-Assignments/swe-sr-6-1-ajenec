@@ -21,10 +21,10 @@ They store elements in **contiguous memory locations**, resulting in easily calc
   - If you're inserting an element at the beginning or middle the time complexity is `O(n)` because the elements need to be shifted to make space.
 - **Removal:**
   - if you're removing an element from the end, the time complexity is `O(n)`.
-  - If you're removing an element`O(1)`.
-- **Random Access:** O(1)
-- **Memory Usage:** Efficient Requires contiguous memory allocation
-- **Traversal Ease:** Easy with indexing. Your able to iterate through an entire array.
+  - If you're removing an element `O(1)`.
+- **Random Access:** `O(1)` because of direct indexing.
+- **Memory Usage:** Efficient but requires contiguous memory allocation, which can make resizing costly.
+- **Traversal Ease:** Easy with indexing. You can iterate through an entire array in `O(n)` time.
 
 ## Prompt 2
 
