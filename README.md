@@ -109,8 +109,83 @@ What is an Abstract Data Type and why are they worth learning about?
 
 ### Response 3
 
+In abstract data type is a data structure that is a way of organizing and Storing Data in a computer so that it can be accessed, modified, and processed efficiently. Operations act as an interface where we focus on the what and not the how a method/operation is done. For Example:
+
+```js
+const myStack = new Stack();
+myStack.add(5);
+myStack.add(9);
+myStack.remove();
+```
+
+Lets say you created a Stack class. That class has methods/operations such as `.add()`, `.remove()`, etc. is an interface of sorts but we don't exactly know how the method is executed under the hood. The internal details on how the operation works is hidden or `Abstracted` away.
+
 ## Prompt 4
 
 A few classic problems involving a stack are the `isBalanced` and `isPalindrome` functions. Choose one of these functions and provide a solution to it along with a brief lesson explaining how it works.
 
 ### Response 4
+
+Lets go over how the `isPalindrome` function can be solved with a stack. A palindrome is a word that is the same spelled backwards. An example is: tenet or racecar. Here is my Stack class:
+
+```js
+class Stack {
+  #stack = [];
+  constructor() {}
+
+  push(data) {
+    this.#stack.push(data);
+  }
+
+  pop() {
+    let top = this.#stack.pop();
+    return top;
+  }
+
+  peek() {
+    return this.#stack[this.#stack.length - 1];
+  }
+
+  isEmpty() {
+    return this.#stack.length === 0;
+  }
+
+  getSize() {
+    return this.#stack.length;
+  }
+}
+```
+
+The function will take in an `inputString`. The first thing we want to do is have a variable for our stack lets call it `myStack`. We also want the length of the input and the middle of the input. As well as a for loop to add letters into our stack up until the middle index Shown below:
+
+```js
+const isPalindrome = ('tenet') =>{
+const myStack = new Stack();
+const length = inputString.length; // tenet.length: 5
+const mid = Math.floor(length / 2); // index 2 = n
+
+for(i = 0; i < mid; i++){
+    myStack.push(inputString[i]) // [t,e]
+}
+}
+```
+
+I will make a new variable to show where to start the next for loop, lets call it `start`.
+
+```js
+let start = length % 2 === 0 ? mid : mid + 1; //5 is not divisible by 2 so the new value of mid will be 3 not 2
+```
+
+Our final for loop will start at our new variable and go up until the length of the input and we will have a conditional to determine whether we have a palindrome or not.
+
+```js
+for (let i = start /*3*/; i < length /*5*/; i++) {
+  if (myStack.pop() !== inputString[i]) return false;
+  return true;
+  //[t, e]
+  // if ([e] === e) true
+  // if ([t] === t) true
+
+  //This is a palindrome!
+}
+```
